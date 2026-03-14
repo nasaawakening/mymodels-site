@@ -3,71 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MyModels — Offline AI Platform</title>
+
+<title>MyModels Repository</title>
 
 <style>
 body{
   margin:0;
-  font-family:Arial,sans-serif;
-  background:#0f172a;
-  color:white;
-  text-align:center;
-  transition:.3s;
+  font-family:system-ui,Segoe UI,Arial;
+  background:#0d1117;
+  color:#c9d1d9;
 }
 
-body.light{
-  background:#f5f5f5;
-  color:#111;
-}
-
+/* HEADER */
 header{
-  padding:20px;
+  background:#161b22;
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  border-bottom:1px solid #30363d;
 }
 
 .logo{
-  width:80px;
-  border-radius:18px;
+  width:32px;
+  border-radius:6px;
+}
+
+h1{
+  font-size:18px;
+  margin:0;
+}
+
+/* LAYOUT */
+.container{
+  display:flex;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  background:#0d1117;
+  border-right:1px solid #30363d;
+  padding:20px;
+}
+
+.sidebar a{
+  display:block;
+  padding:10px;
+  border-radius:6px;
+  color:#c9d1d9;
+  text-decoration:none;
+  margin-bottom:5px;
+}
+
+.sidebar a:hover{
+  background:#161b22;
+}
+
+/* MAIN */
+.main{
+  flex:1;
+  padding:30px;
+}
+
+/* CARD */
+.card{
+  background:#161b22;
+  border:1px solid #30363d;
+  border-radius:12px;
+  padding:20px;
+  margin-bottom:20px;
 }
 
 .download{
   display:inline-block;
-  padding:18px 32px;
-  background:#00c6ff;
+  padding:12px 20px;
+  background:#238636;
   color:white;
-  border-radius:40px;
+  border-radius:6px;
   text-decoration:none;
-  font-size:1.2em;
-  margin:20px;
+  font-weight:bold;
 }
 
-.section{
-  padding:40px 20px;
-}
-
-.slider img{
-  width:260px;
-  margin:10px;
-  border-radius:16px;
+.download:hover{
+  background:#2ea043;
 }
 
 .model{
-  border:1px solid rgba(255,255,255,.2);
-  padding:15px;
-  margin:15px;
-  border-radius:14px;
-}
-
-button{
-  padding:10px 18px;
-  border:none;
-  border-radius:20px;
-  background:#0072ff;
-  color:white;
+  border-top:1px solid #30363d;
+  padding-top:15px;
+  margin-top:15px;
 }
 
 footer{
-  padding:40px;
   opacity:.6;
+  margin-top:40px;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+  .container{flex-direction:column;}
+  .sidebar{width:100%;}
 }
 </style>
 
@@ -78,128 +115,83 @@ footer{
 <header>
   <img src="icon.png" class="logo">
   <h1>MyModels</h1>
-  <button onclick="toggleMode()">🌙</button>
 </header>
 
-<div class="section">
+<div class="container">
 
-  <h2>AI Offline di Genggamanmu 🚀</h2>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
 
-  <a href="MyModels.apk" download class="download"
-     onclick="trackDownload()">
-     📥 Download APK
-  </a>
+    <a href="#">🏠 Home</a>
+    <a href="#">📥 Releases</a>
+    <a href="#">📦 Models</a>
+    <a href="#">📜 Changelog</a>
+    <a href="#">⭐ About</a>
 
-  <p id="version">Memuat versi...</p>
+  </div>
 
-</div>
+  <!-- MAIN CONTENT -->
+  <div class="main">
 
-<div class="section">
+    <!-- RELEASE CARD -->
+    <div class="card">
 
-  <h2>Screenshot 📱</h2>
+      <h2>Latest Release</h2>
 
-  <div class="slider">
-    <img src="screenshots/1.png">
-    <img src="screenshots/2.png">
-    <img src="screenshots/3.png">
+      <p><b>Version:</b> 1.0.373</p>
+      <p><b>Size:</b> 28 MB</p>
+      <p><b>Platform:</b> Android</p>
+
+      <a href="MyModels.apk" download class="download">
+        📥 Download APK
+      </a>
+
+    </div>
+
+    <!-- CHANGELOG -->
+    <div class="card">
+
+      <h2>Changelog</h2>
+
+      <ul>
+        <li>🔥 Performa AI meningkat</li>
+        <li>⚡ Startup lebih cepat</li>
+        <li>🐞 Bug fixes</li>
+        <li>🎨 UI diperbarui</li>
+      </ul>
+
+    </div>
+
+    <!-- MODELS -->
+    <div class="card">
+
+      <h2>AI Models</h2>
+
+      <div class="model">
+        <b>Llama 3 8B</b>
+        <p>4.2 GB</p>
+        <a href="models/llama3.gguf" download class="download">
+          Download
+        </a>
+      </div>
+
+      <div class="model">
+        <b>Mistral 7B</b>
+        <p>3.8 GB</p>
+        <a href="models/mistral.gguf" download class="download">
+          Download
+        </a>
+      </div>
+
+    </div>
+
+    <footer>
+      © 2026 MyModels — Made with by Nasa
+    </footer>
+
   </div>
 
 </div>
-
-<div class="section">
-
-  <h2>Changelog 📜</h2>
-  <ul id="changelog"></ul>
-
-</div>
-
-<div class="section">
-
-  <h2>Model AI 📦</h2>
-  <div id="models"></div>
-
-</div>
-
-<div class="section">
-
-  <h2>🔐 License Check (Demo)</h2>
-  <input id="licenseKey" placeholder="Masukkan key">
-  <button onclick="checkLicense()">Check</button>
-  <p id="licenseResult"></p>
-
-</div>
-
-<footer>
-  © 2026 MyModels — Made with 💀 by Nasa
-</footer>
-
-<script>
-
-// 🌗 DARK MODE
-function toggleMode(){
-  document.body.classList.toggle("light");
-}
-
-// 🔄 VERSION + CHANGELOG (hardcoded fallback)
-const versionData = {
-  version:"1.0.373",
-  changelog:[
-    "🔥 Performa AI meningkat",
-    "⚡ Startup lebih cepat",
-    "🐞 Bug fixes",
-    "🎨 UI diperbarui"
-  ]
-};
-
-document.getElementById("version")
-  .textContent="Versi terbaru: "+versionData.version;
-
-const cl=document.getElementById("changelog");
-versionData.changelog.forEach(c=>{
-  const li=document.createElement("li");
-  li.textContent=c;
-  cl.appendChild(li);
-});
-
-// 📦 MODEL REPOSITORY
-const models=[
- {name:"Llama 3 8B",size:"4.2 GB",url:"models/llama3.gguf"},
- {name:"Mistral 7B",size:"3.8 GB",url:"models/mistral.gguf"}
-];
-
-const box=document.getElementById("models");
-
-models.forEach(m=>{
-  box.innerHTML+=`
-    <div class="model">
-      <h3>${m.name}</h3>
-      <p>${m.size}</p>
-      <a href="${m.url}" download>
-        <button>Download</button>
-      </a>
-    </div>`;
-});
-
-// 📊 DOWNLOAD ANALYTICS (free counter)
-function trackDownload(){
-  fetch("https://api.countapi.xyz/hit/mymodels/apk");
-}
-
-// 🔐 LICENSE CHECK (demo)
-const validKeys=[
-  "NASA-ELITE-001",
-  "MYMODELS-PRO-777"
-];
-
-function checkLicense(){
-  const key=document.getElementById("licenseKey").value;
-  document.getElementById("licenseResult").textContent =
-    validKeys.includes(key)
-    ? "✅ License valid — Premium aktif"
-    : "❌ License tidak valid";
-}
-
-</script>
 
 </body>
 </html>
