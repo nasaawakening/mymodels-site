@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MyModels — Offline AI Platform</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#0f172a;
+  color:white;
+  text-align:center;
+  transition:.3s;
+}
+
+body.light{
+  background:#f5f5f5;
+  color:#111;
+}
+
+header{
+  padding:20px;
+}
+
+.logo{
+  width:80px;
+  border-radius:18px;
+}
+
+.download{
+  display:inline-block;
+  padding:18px 32px;
+  background:#00c6ff;
+  color:white;
+  border-radius:40px;
+  text-decoration:none;
+  font-size:1.2em;
+  margin:20px;
+}
+
+.section{
+  padding:40px 20px;
+}
+
+.slider img{
+  width:260px;
+  margin:10px;
+  border-radius:16px;
+}
+
+.model{
+  border:1px solid rgba(255,255,255,.2);
+  padding:15px;
+  margin:15px;
+  border-radius:14px;
+}
+
+button{
+  padding:10px 18px;
+  border:none;
+  border-radius:20px;
+  background:#0072ff;
+  color:white;
+}
+
+footer{
+  padding:40px;
+  opacity:.6;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <img src="icon.png" class="logo">
+  <h1>MyModels</h1>
+  <button onclick="toggleMode()">🌙</button>
+</header>
+
+<div class="section">
+
+  <h2>AI Offline di Genggamanmu 🚀</h2>
+
+  <a href="MyModels.apk" download class="download"
+     onclick="trackDownload()">
+     📥 Download APK
+  </a>
+
+  <p id="version">Memuat versi...</p>
+
+</div>
+
+<div class="section">
+
+  <h2>Screenshot 📱</h2>
+
+  <div class="slider">
+    <img src="screenshots/1.png">
+    <img src="screenshots/2.png">
+    <img src="screenshots/3.png">
+  </div>
+
+</div>
+
+<div class="section">
+
+  <h2>Changelog 📜</h2>
+  <ul id="changelog"></ul>
+
+</div>
+
+<div class="section">
+
+  <h2>Model AI 📦</h2>
+  <div id="models"></div>
+
+</div>
+
+<div class="section">
+
+  <h2>🔐 License Check (Demo)</h2>
+  <input id="licenseKey" placeholder="Masukkan key">
+  <button onclick="checkLicense()">Check</button>
+  <p id="licenseResult"></p>
+
+</div>
+
+<footer>
+  © 2026 MyModels — Made with 💀 by Nasa
+</footer>
+
+<script>
+
+// 🌗 DARK MODE
+function toggleMode(){
+  document.body.classList.toggle("light");
+}
+
+// 🔄 VERSION + CHANGELOG (hardcoded fallback)
+const versionData = {
+  version:"1.0.373",
+  changelog:[
+    "🔥 Performa AI meningkat",
+    "⚡ Startup lebih cepat",
+    "🐞 Bug fixes",
+    "🎨 UI diperbarui"
+  ]
+};
+
+document.getElementById("version")
+  .textContent="Versi terbaru: "+versionData.version;
+
+const cl=document.getElementById("changelog");
+versionData.changelog.forEach(c=>{
+  const li=document.createElement("li");
+  li.textContent=c;
+  cl.appendChild(li);
+});
+
+// 📦 MODEL REPOSITORY
+const models=[
+ {name:"Llama 3 8B",size:"4.2 GB",url:"models/llama3.gguf"},
+ {name:"Mistral 7B",size:"3.8 GB",url:"models/mistral.gguf"}
+];
+
+const box=document.getElementById("models");
+
+models.forEach(m=>{
+  box.innerHTML+=`
+    <div class="model">
+      <h3>${m.name}</h3>
+      <p>${m.size}</p>
+      <a href="${m.url}" download>
+        <button>Download</button>
+      </a>
+    </div>`;
+});
+
+// 📊 DOWNLOAD ANALYTICS (free counter)
+function trackDownload(){
+  fetch("https://api.countapi.xyz/hit/mymodels/apk");
+}
+
+// 🔐 LICENSE CHECK (demo)
+const validKeys=[
+  "NASA-ELITE-001",
+  "MYMODELS-PRO-777"
+];
+
+function checkLicense(){
+  const key=document.getElementById("licenseKey").value;
+  document.getElementById("licenseResult").textContent =
+    validKeys.includes(key)
+    ? "✅ License valid — Premium aktif"
+    : "❌ License tidak valid";
+}
+
+</script>
+
+</body>
+</html>
